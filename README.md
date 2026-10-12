@@ -42,16 +42,45 @@ Raw scores for every run are in [`results.json`](results.json).
 
 | File | Content |
 |---|---|
-| `finbert_vs_distilbert.ipynb` | Training and evaluation of both models. Source of all numbers above. Run on a GPU (for example Google Colab). |
+| `train.py` | Training and evaluation code (weighted loss, 3 seeds, summary, confusion matrices). Command-line entry point. |
+| `tests/test_train.py` | Unit tests for class weights, weighted loss, scoring, summary and the committed `results.json`. No model download needed. |
+| `requirements.txt` | Python dependencies. |
+| `finbert_vs_distilbert.ipynb` | Notebook version of the same experiment. Source of the numbers above. |
 | `sentiment.ipynb` | First exploration notebook: data checks, tokenisation, class weights, example predictions. |
 | `results.json` | Accuracy and macro F1 for every run. |
 | `confusion_matrices.png` | Confusion matrices from the last seed. |
 
 ## How to run
 
-1. Open `finbert_vs_distilbert.ipynb` in Google Colab.
-2. Select a GPU runtime (Runtime > Change runtime type).
-3. Run all cells. It takes 10 to 20 minutes.
+Requires Python 3.9 or newer. A GPU is strongly recommended (the reported numbers used a Colab T4); on CPU a full run takes hours.
+
+```bash
+git clone https://github.com/muskan688/financial-sentiment-classifier.git
+cd financial-sentiment-classifier
+python -m venv .venv
+.venv\Scripts\activate          # Windows; on macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Full experiment (both models, seeds 42 to 44, about 10 to 20 minutes on a T4). It overwrites `results.json` and `confusion_matrices.png`:
+
+```bash
+python train.py
+```
+
+Quick smoke run (one model, one seed, one epoch):
+
+```bash
+python train.py --models FinBERT --seeds 42 --epochs 1 --results smoke.json --plot smoke.png
+```
+
+Run the tests (fast, no GPU or model download):
+
+```bash
+python -m pytest
+```
+
+You can also run the notebook `finbert_vs_distilbert.ipynb` in Google Colab with a T4 GPU runtime.
 
 ## Possible next steps
 
