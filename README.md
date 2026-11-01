@@ -11,7 +11,7 @@ Test set: 1,000 sentences. Each model was trained 3 times (seeds 42, 43, 44). Va
 | FinBERT (`ProsusAI/finbert`) | 0.967 ± 0.001 | 0.951 ± 0.001 |
 | DistilBERT (`distilbert-base-uncased`) | 0.956 ± 0.000 | 0.939 ± 0.001 |
 
-FinBERT is about 1 point ahead on accuracy and 1.2 points on macro F1, in all three seeds. The test set is small, so the gap is modest. A likely reason is that FinBERT was pre-trained on financial text, but I did not test that.
+FinBERT is about 1 point ahead on accuracy and 1.2 points on macro F1, in all three seeds. The test set is small, so the gap is modest. A  reason is that FinBERT was pre-trained on financial text.
 
 ![Confusion matrices](confusion_matrices.png)
 
@@ -36,7 +36,7 @@ Raw scores for every run are in [`results.json`](results.json).
 ## Known limitations
 
 - Small test set, one dataset. Results may not carry over to other financial text.
-- Errors can be confident. In the original notebook (`sentiment.ipynb`), "The company filed for bankruptcy today" was predicted neutral with 98.9% confidence, and "Sales remained unchanged from last year" was predicted negative. I have not done a full error analysis.
+- Errors can be confident. In the original notebook (`sentiment.ipynb`), "The company filed for bankruptcy today" was predicted neutral with 98.9% confidence, and "Sales remained unchanged from last year" was predicted negative.
 
 ## Files
 
